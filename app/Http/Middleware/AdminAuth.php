@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminAuth
 {
@@ -16,6 +17,13 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if( Auth::check() ) {
+            if (Auth::user()->isAdmin()) {
+                return $next($request);
+            } else {
+                return redirect()->route('front.user.dashboard');
+            }
+        }
+        return response()->view('pages.unauthorized');
     }
 }
