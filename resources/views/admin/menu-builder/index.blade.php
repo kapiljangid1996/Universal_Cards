@@ -11,8 +11,8 @@
 				<div class="card-body">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMenu">Add New Menu</button> 
 					<div class="table-responsive mt-4">
-						<table class="table table-striped" id="table-1">
-							<thead>
+						<table class="table table-borderless" id="table-1">
+							<thead >
 			                    <tr>
 			                        <th>#</th>
 			                        <th>Menu Id</th>
@@ -32,12 +32,18 @@
 			                            <td>{{ $menu->heading }}</td>
 			                            <td>{{ $menu->status ? 'Yes' : 'No' }}</td>
 			                            <td>{{ $menu->created_at }}</td>
-			                            <td class="text-center">
-			                                <a href="{{route('menu-builder.edit', $menu->id)}}"> <i class="text-warning" data-feather="edit-2"></i> </a>                                  
+			                            <td>
+			                                <a type="button" class="editMenuModal" data-toggle="modal" data-target="#editMenu" data-id="{{ $menu->id }}" data-title="{{ $menu->title }}" data-heading="{{ $menu->heading }}" data-status="{{ $menu->status }}"> 
+			                                	<i class="text-warning" data-feather="edit-2"></i> 
+			                                </a>  
+
 			                                <a href="{{url('/admin/menu-builder/delete/'.$menu->id)}}" onclick="return confirm('Are you sure you want to delete')"> 
 			                                    <i class="text-danger" data-feather="trash"></i>
 			                                </a> 
-			                                <a href="{{route('menu-builder.show', $menu->id)}}"> <i class="text-success" data-feather="eye"></i> </a>
+
+			                                <a href="{{route('menu-builder.show', $menu->id)}}"> 
+			                                	<i class="text-success" data-feather="eye"></i> 
+			                                </a>
 			                            </td>   
 			                        </tr>
 			                	<?php } ?> 
@@ -51,6 +57,7 @@
 </div>
 @stop
 
+@section('scripts')
 <!-- Add Menu Modal Start -->
 <div class="modal fade" id="addMenu" tabindex="-1" role="dialog" aria-labelledby="formModal" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -92,3 +99,57 @@
 	</div>
 </div>
 <!-- Add Menu Modal End -->
+
+<script>
+	$(document).ready(function() {
+		$('.editMenuModal').click(function() {
+			var id=$(this).data('id');
+			var title=$(this).data('title');
+			var heading=$(this).data('heading');
+			var status=$(this).data('status');
+		});
+	});
+</script>
+
+<!-- Edit Menu Modal Start -->
+<div class="modal fade" id="editMenu" tabindex="-1" role="dialog" aria-labelledby="editMenuModal" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editMenuModal">Add Menu Type</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="{{ route('menu-builder.store') }}" method="POST">
+					@csrf
+					<div class="form-group">
+						<label>Menu Name</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="title" value="{{old('title')}}" required="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Menu Heading</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="heading" value="{{old('heading')}}" required="">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="custom-switches-stacked mt-2">
+							<label class="custom-switch">
+								<input type="checkbox" class="custom-switch-input" name="status" value="1" checked>
+								<span class="custom-switch-indicator"></span>
+								<span class="custom-switch-description">Status</span>
+							</label>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary m-t-15 waves-effect">Save changes</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Edit Menu Modal End -->
+@stop

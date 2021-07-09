@@ -67,7 +67,6 @@
 		<script src="{{ asset('backend/js/app.min.js')}}"></script>
 
 		<!-- JS Libraies -->
-
 		<script src="{{ asset('backend/bundles/datatables/datatables.min.js')}}"></script>
 
 		<script src="{{ asset('backend/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js')}}"></script>
