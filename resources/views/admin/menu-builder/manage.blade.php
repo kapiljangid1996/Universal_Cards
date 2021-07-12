@@ -44,19 +44,17 @@
 			<div id="menuResponse" class="ibox-head" style="display:none; margin-left: 15px; margin-top: 15px;color: green"><div class="ibox-title"></div></div>
 			<div class="card">
 				<div class="card-body">
-					<div style="float: right;">
+					<div>
 						<select class="form-control" id="menuTypes">
 							<?php foreach($menu_types  as $menu_type){ ?>
 								<option value="<?php echo $menu_type->id; ?>" <?php echo ($menu_id == $menu_type->id) ? 'selected=selected' : ''; ?>><?php echo $menu_type->title; ?></option>
 							<?php } ?>
 						</select>
 					</div>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-body">
-					<ul id="myEditor" class="sortableLists list-group"></ul>
-					<button id="btnOutput" type="button" class="btn btn-success mt-2">Save Menu Structure</button> 
+					<div class="pt-3">
+						<ul id="myEditor" class="sortableLists list-group"></ul>
+						<button id="btnOutput" type="button" class="btn btn-success mt-2">Save Menu Structure</button> 
+					</div>
 				</div>
 			</div>
 		</div>
