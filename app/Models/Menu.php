@@ -23,12 +23,12 @@ class Menu extends Model
         $menus->save();
     }
 
-    public static function editMenu($request,$id){
-        $menus = Menu::find($id);
-        $menus -> title = $request->input('title');
+    public static function editMenu($request){
+        $menus = Menu::find($request->id);
+        $menus -> title = $request->title;
         $menus -> menu_key = !empty($request->menu_key) ? Str::slug(trim($request->menu_key), '-') : Str::slug(trim($request->title), '-');
-        $menus -> heading = $request->input('heading');
-        $menus -> status = $request->input('status');
+        $menus -> heading = $request->heading;
+        $menus -> status = (isset($request->status))?1:0;
         $menus->save();;
     }
 

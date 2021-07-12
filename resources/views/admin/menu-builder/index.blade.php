@@ -107,6 +107,40 @@
 			var title=$(this).data('title');
 			var heading=$(this).data('heading');
 			var status=$(this).data('status');
+			$('#m_name').val(title);
+			$('#m_heading').val(heading);
+			$('#m_status').val(status);
+			$('#m_id').val(id);
+			if (status == 1) {
+				$('#m_status').attr("checked", true);
+			} 
+			else {
+				$('#m_status').attr("checked", false);
+			}
+		});
+
+		$('#edit_menu_type').on('submit', function(e) {
+			e.preventDefault();
+			var baseUrl = '{{ URL::to('/') }}';
+			var new_name = $('#m_name').val();
+			var new_heading = $('#m_heading').val();
+			var new_status = $('#m_status:checked').val();
+			var new_id = $('#m_id').val();
+			var csrfToken = $('meta[name="csrf-token"]').attr('content');
+			$.ajax({
+				url : "{{ route('menu-builder.update') }}",
+				type:'post',
+				data : { _token : csrfToken, id : new_id, title : new_name, heading : new_heading, status : new_status},
+				success:function(html){
+					var result = JSON.parse(html);
+					if(result.statusCode == 200){ 
+						alert('Menu Type Updated Successfully!');
+					} 
+					else {
+						alert('Something went wrong please check the form!');
+					}
+				},
+			});
 		});
 	});
 </script>
@@ -116,36 +150,36 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="editMenuModal">Add Menu Type</h5>
+				<h5 class="modal-title" id="editMenuModal">Edit Menu Type</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="{{ route('menu-builder.store') }}" method="POST">
-					@csrf
+				<form id="edit_menu_type">
 					<div class="form-group">
 						<label>Menu Name</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="title" value="{{old('title')}}" required="">
+							<input type="text" class="form-control" id="m_name" name="title" value="{{old('title')}}" required="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label>Menu Heading</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="heading" value="{{old('heading')}}" required="">
+							<input type="text" class="form-control" id="m_heading" name="heading" value="{{old('heading')}}" required="">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="custom-switches-stacked mt-2">
 							<label class="custom-switch">
-								<input type="checkbox" class="custom-switch-input" name="status" value="1" checked>
+								<input type="checkbox" class="custom-switch-input" id="m_status" name="status" value="1">
 								<span class="custom-switch-indicator"></span>
 								<span class="custom-switch-description">Status</span>
 							</label>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary m-t-15 waves-effect">Save changes</button>
+					<input type="hidden" name="menu_id" id="m_id" value="">
+					<button type="submit" id="" class="btn btn-primary m-t-15 waves-effect">Save changes</button>
 				</form>
 			</div>
 		</div>

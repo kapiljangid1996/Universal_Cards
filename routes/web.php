@@ -34,8 +34,7 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     //Menu Manager
     Route::get('/menu-builder', [MenusController::class, 'index'])->name('menu-builder.index');
     Route::post('/menu-builder', [MenusController::class, 'store'])->name('menu-builder.store');
-    Route::get('/menu-builder/edit/{id}', [MenusController::class, 'edit'])->name('menu-builder.edit');
-    Route::post('/menu-builder/edit/{id}', [MenusController::class, 'update'])->name('menu-builder.update');
+    Route::post('/editMenuType', [MenusController::class, 'update'])->name('menu-builder.update');
     Route::get('/menu-builder/delete/{id}', [MenusController::class, 'destroy'])->name('menu-builder.destroy');
     Route::get('/menu/manage-menu/{id}', [MenusController::class, 'show'])->name('menu-builder.show');
     Route::post('/menu/ajaxGetMenuLinks', [MenusController::class, 'ajaxGetMenuLinks']);    

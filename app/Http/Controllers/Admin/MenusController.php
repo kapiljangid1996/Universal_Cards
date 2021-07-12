@@ -26,16 +26,16 @@ class MenusController extends Controller
         return redirect()->route('menu-builder.index')->with('toast_success','Menu Created!');
     }
 
-    public function edit($id)
-    {
-        $menus = Menu::find($id);
-        return view('admin.menu-builder.edit')->with('menus',$menus);
-    }
-
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {   
-        $menus = Menu::editMenu($request,$id);
-        return redirect()->route('menu-builder.index')->with('toast_success','Menu Updated!');
+        if (!empty($request->id) && !empty($request->title) && !empty($request->heading)) {
+            $menus = Menu::editMenu($request);
+            return json_encode(array('statusCode'=>200));
+        } 
+        else {
+            return json_encode(array('statusCode'=>400));
+        }
+        
     }
 
     public function destroy($id)
