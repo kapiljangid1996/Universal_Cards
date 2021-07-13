@@ -37,7 +37,7 @@
 			            </div>							
 		                <div class="form-group row">
 		                	<div class="col-md-12">
-				                <select class="form-control" name="mega_menu_row">
+				                <select class="form-control" name="mega_menu_row" id="mega_menu_row1">
 									<option selected="" disabled="">Please Select Mega Menu Row</option>
 									<option value="1">Row 1</option>
 									<option value="2">Row 2</option>
@@ -187,8 +187,11 @@
 							
 							if(result.response.mega_menu == 1){
 								$('#mega_menu').prop('checked',true);
+								$('#mega_menu_row').prop('disabled', false);
 							}else{
 								$('#mega_menu').prop('checked',false);
+								$('#mega_menu_row').prop('selectedIndex',0);
+								$('#mega_menu_row').prop('disabled', true);
 							}
 
 							$('#mega_menu_row').val(result.response.mega_menu_row);
@@ -266,12 +269,27 @@
 	$(document).ready(function () {
 		$('#mega_menu').click(function() {
 		    if ($('#mega_menu').is(":checked")) {
-		    	alert('checked');
+		    	$('#mega_menu_row').prop('disabled', false);
 		    }
 		    else {
 		    	$('#mega_menu_row').prop('selectedIndex',0);
+		    	$('#mega_menu_row').prop('disabled', true);
 		    }
 		});
+
+		$('#mega_menu1').click(function() {
+		    if ($('#mega_menu1').is(":checked")) {
+		    	$('#mega_menu_row1').prop('disabled', false);
+		    }
+		    else {
+		    	$('#mega_menu_row1').prop('selectedIndex',0);
+		    	$('#mega_menu_row1').prop('disabled', true);
+		    }
+		});
+	});
+
+	$( window ).on( "load", function() {
+		$('#mega_menu_row1').prop('disabled', true);
 	});
 </script>
 

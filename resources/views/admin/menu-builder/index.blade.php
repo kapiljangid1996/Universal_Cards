@@ -135,6 +135,7 @@
 					var result = JSON.parse(html);
 					if(result.statusCode == 200){ 
 						alert('Menu Type Updated Successfully!');
+						window.location.href = "menu-builder";
 					} 
 					else {
 						alert('Something went wrong please check the form!');
