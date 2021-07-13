@@ -144,7 +144,7 @@ class MenusController extends Controller
             $menuPage->status  = 1;
             $menuPage->sort_number  = $sort_number;
             $menuPage->page_type  = $request->link_type;
-            $menuPage->mega_menu  = $request->mega_menu;
+            $menuPage->mega_menu  = (isset($request->mega_menu))?1:0;
             $menuPage->mega_menu_row  = $request->mega_menu_row;
             
             $menuPage->save();

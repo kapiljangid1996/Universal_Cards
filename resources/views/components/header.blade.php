@@ -1,3 +1,7 @@
+<?php 
+    $MenuPagemodel = new App\Models\MenuPage;
+?>
+
 <header class="header-area header-wide">
     <!-- main header start -->
     <div class="main-header d-none d-lg-block">
@@ -53,13 +57,38 @@
                     <!-- start logo area -->
 
                     <!-- main menu area start -->
+                    <?php 
+                        echo front_menu($MenuPagemodel, 1, array(
+                            'main_ul_class'=> '',
+
+                            'main_li_class'=>'',
+
+                            'main_li_mega_menu_class'=>'position-static',
+
+                            'child_ul_mega_menu_class'=>'megamenu dropdown',
+
+                            'child_li_mega_menu_class'=>'mega-title',
+
+                            'sub_child_ul_mega_menu_class'=>'',
+
+                            'sub_child_li_mega_menu_class'=>'',
+
+                            'child_ul_class'=>'dropdown',
+
+                            'child_li_class'=>'',
+
+                            'sub_child_ul_class'=>'dropdown'
+                        )); 
+                    ?>
+
                     <div class="col-lg-6 position-static">
                         <div class="main-menu-area">
                             <div class="main-menu">
                                 <!-- main menu navbar start -->
                                 <nav class="desktop-menu">
                                     <ul>
-                                        <li class="active"><a href="index.html">Home <i class="fa fa-angle-down"></i></a>
+                                        <li class="active">
+                                            <a href="{{ url('/') }}">Home <i class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown">
                                                 <li><a href="index.html">Home version 01</a></li>
                                                 <li><a href="index-2.html">Home version 02</a></li>
@@ -69,7 +98,8 @@
                                                 <li><a href="index-6.html">Home version 06</a></li>
                                             </ul>
                                         </li>
-                                        <li class="position-static"><a href="#">pages <i class="fa fa-angle-down"></i></a>
+                                        <li class="position-static">
+                                            <a href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="megamenu dropdown">
                                                 <li class="mega-title"><span>column 01</span>
                                                     <ul>
@@ -115,7 +145,8 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="shop.html">shop <i class="fa fa-angle-down"></i></a>
+                                        <li>
+                                            <a href="shop.html">shop <i class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown">
                                                 <li><a href="#">shop grid layout <i class="fa fa-angle-right"></i></a>
                                                     <ul class="dropdown">

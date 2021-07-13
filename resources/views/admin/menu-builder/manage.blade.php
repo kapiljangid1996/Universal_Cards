@@ -288,8 +288,9 @@
 		});
 	});
 
-	$( window ).on( "load", function() {
+	$(window).on('load', function () {
 		$('#mega_menu_row1').prop('disabled', true);
+		$('#mega_menu_row').prop('disabled', true);
 	});
 </script>
 
