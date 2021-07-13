@@ -253,11 +253,11 @@
 					</div>
 					<div class="form-check" style="margin-left:5%">
 						<input type="checkbox" class="form-check-input" id="menu_status" value="1">
-						<label class="form-check-label" for="exampleCheck1">Status</label>
+						<label class="form-check-label" for="menu_status">Status</label>
 					</div>
 					<div class="form-check" style="margin-left:5%">
 						<input type="checkbox" class="form-check-input" id="menu_new_tab" value="1">
-						<label class="form-check-label" for="exampleCheck1">New Tab</label>
+						<label class="form-check-label" for="menu_new_tab">New Tab</label>
 					</div>
 					<input type="hidden" class="form-control" id="menu_page_id">
 				</div>
