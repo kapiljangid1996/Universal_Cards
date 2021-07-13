@@ -144,6 +144,8 @@ class MenusController extends Controller
             $menuPage->status  = 1;
             $menuPage->sort_number  = $sort_number;
             $menuPage->page_type  = $request->link_type;
+            $menuPage->mega_menu  = $request->mega_menu;
+            $menuPage->mega_menu_row  = $request->mega_menu_row;
             
             $menuPage->save();
         }
@@ -204,6 +206,8 @@ class MenusController extends Controller
                     $result['response']['status'] = $data['status'];
                     $result['response']['new_tab'] = $data['new_tab'];
                     $result['response']['page_type'] = $data['page_type'];                    
+                    $result['response']['mega_menu'] = $data['mega_menu'];                    
+                    $result['response']['mega_menu_row'] = $data['mega_menu_row'];                    
                 }
             }            
         }
@@ -223,6 +227,8 @@ class MenusController extends Controller
                 $menuPage->slug = isset($request->menu_slug) ? $request->menu_slug : '';
                 $menuPage->status = isset($request->menu_status) ? $request->menu_status : '';
                 $menuPage->new_tab = isset($request->menu_new_tab) ? $request->menu_new_tab : '';
+                $menuPage->mega_menu = isset($request->mega_menu) ? $request->mega_menu : '';
+                $menuPage->mega_menu_row = isset($request->mega_menu_row) ? $request->mega_menu_row : '';
                 $menuPage->save();
                 $result = 1;
             }

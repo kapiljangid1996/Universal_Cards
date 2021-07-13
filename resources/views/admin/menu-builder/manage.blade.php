@@ -29,6 +29,23 @@
 			                    <input type="text" id="site" class="form-control" name="url" placeholder="Enter URL" value="http://">
 			                </div>
 			            </div>
+			            <div class="form-group row">
+			            	<div class="form-check" style="margin-left:5%">
+								<input type="checkbox" class="form-check-input" id="mega_menu1" name="mega_menu" value="1">
+								<label class="form-check-label" for="mega_menu1">Mega Menu</label>
+							</div>
+			            </div>							
+		                <div class="form-group row">
+		                	<div class="col-md-12">
+				                <select class="form-control" name="mega_menu_row">
+									<option selected="" disabled="">Please Select Mega Menu Row</option>
+									<option value="1">Row 1</option>
+									<option value="2">Row 2</option>
+									<option value="3">Row 3</option>
+									<option value="4">Row 4</option>
+								</select>		                		
+		                	</div>
+			            </div>
 			            <input type="hidden" name="link_type" value="<?php echo 'custom-links'; ?>">
 			            <input type="hidden" name="menu_id" value="<?php echo $menu_id; ?>">
 			            <div class="form-group row">
@@ -167,7 +184,17 @@
 							}else{
 								$('#menu_new_tab').prop('checked',false);
 							}
+							
+							if(result.response.mega_menu == 1){
+								$('#mega_menu').prop('checked',true);
+							}else{
+								$('#mega_menu').prop('checked',false);
+							}
+
+							$('#mega_menu_row').val(result.response.mega_menu_row);
+
 							$('#menu_slug').attr('readonly',true);
+
 							if(result.response.page_type == "custom-links"){
 								$('#menu_slug').attr('readonly',false);
 							}
@@ -185,14 +212,20 @@
 			var menu_title = $('#menu_title').val();
 			var menu_slug = $('#menu_slug').val();
 			var menu_page_id = $('#menu_page_id').val();
+			var mega_menu_row = $('#mega_menu_row').find('option:selected').val();
 			var menu_status = 0;
 			var menu_new_tab = 0;
+			var mega_menu = 0;
 			if($('#menu_status').is(":checked")){
 				menu_status = 1;
 			}
 			
 			if($('#menu_new_tab').is(":checked")){
 				menu_new_tab = 1;
+			}
+			
+			if($('#mega_menu').is(":checked")){
+				mega_menu = 1;
 			}			
 			
 			if(menu_title != ''){
@@ -201,7 +234,7 @@
 					url : baseUrl+'/admin/menu/ajaxEditMenuPage',
 					dataType : 'json',
 					type:'post',
-					data : {ajax_request : 'editMenuPage',menu_title: menu_title,menu_slug: menu_slug,menu_page_id: menu_page_id,menu_status: menu_status,menu_new_tab: menu_new_tab, '_token' : csrfToken},
+					data : {ajax_request : 'editMenuPage',menu_title: menu_title,menu_slug: menu_slug,menu_page_id: menu_page_id,menu_status: menu_status,menu_new_tab: menu_new_tab, mega_menu: mega_menu, '_token' : csrfToken},
 					success:function(result){
 						if(result == 1){
 							$('.status_text'+menu_page_id).html('<i class="fas fa-toggle-off"></i>');
@@ -228,6 +261,17 @@
 			}
 			
 		});
+	});	
+
+	$(document).ready(function () {
+		$('#mega_menu').click(function() {
+		    if ($('#mega_menu').is(":checked")) {
+		    	alert('checked');
+		    }
+		    else {
+		    	$('#mega_menu_row').prop('selectedIndex',0);
+		    }
+		});
 	});
 </script>
 
@@ -251,14 +295,35 @@
 						<label for="recipient-name" class="col-form-label">Slug*:</label>
 						<input type="text" class="form-control" id="menu_slug" value="http://">
 					</div>
-					<div class="form-check" style="margin-left:5%">
-						<input type="checkbox" class="form-check-input" id="menu_status" value="1">
-						<label class="form-check-label" for="menu_status">Status</label>
+					<div class="form-group">
+						<div class="form-check" style="margin-left:5%">
+							<input type="checkbox" class="form-check-input" id="menu_status" value="1">
+							<label class="form-check-label" for="menu_status">Status</label>
+						</div>
 					</div>
-					<div class="form-check" style="margin-left:5%">
-						<input type="checkbox" class="form-check-input" id="menu_new_tab" value="1">
-						<label class="form-check-label" for="menu_new_tab">New Tab</label>
+					<div class="form-group">
+						<div class="form-check" style="margin-left:5%">
+							<input type="checkbox" class="form-check-input" id="menu_new_tab" value="1">
+							<label class="form-check-label" for="menu_new_tab">New Tab</label>
+						</div>
 					</div>
+		            <div class="form-group row">
+		            	<div class="form-check" style="margin-left:5%">
+							<input type="checkbox" class="form-check-input" id="mega_menu" value="1">
+							<label class="form-check-label" for="mega_menu">Mega Menu</label>
+						</div>
+		            </div>							
+	                <div class="form-group row">
+	                	<div class="col-md-12">
+			                <select class="form-control" id="mega_menu_row">
+								<option selected="" disabled="">Please Select Mega Menu Row</option>
+								<option value="1">Row 1</option>
+								<option value="2">Row 2</option>
+								<option value="3">Row 3</option>
+								<option value="4">Row 4</option>
+							</select>		                		
+	                	</div>
+		            </div>
 					<input type="hidden" class="form-control" id="menu_page_id">
 				</div>
 				<div class="modal-footer m-r-10">
