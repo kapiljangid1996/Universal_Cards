@@ -6,59 +6,28 @@
 <!-- Hero Slider Area Start -->
 <section class="slider-area">
     <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
-        <!-- single slider item start -->
-        <div class="hero-single-slide hero-overlay">
-            <div class="hero-slider-item bg-img" data-bg="{{asset('frontend/img/slider/home1-slide2.jpg')}}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="hero-slider-content slide-1">
-                                <h2 class="slide-title">Family Jewellery <span>Collection</span></h2>
-                                <h4 class="slide-desc">Designer Jewellery Necklaces-Bracelets-Earings</h4>
-                                <a href="shop.html" class="btn btn-hero">Read More</a>
+        <?php $i=1 ?>
+        @foreach($sliders as $key => $slider)
+            <!-- single slider item start -->
+            <div class="hero-single-slide hero-overlay">
+                <div class="hero-slider-item bg-img" data-bg="{{asset('Uploads/Slider').'/'.$slider->image}}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="hero-slider-content slide-<?php echo $i++ ?>">
+                                    <h2 class="slide-title">{{ !empty($slider->title) ? $slider->title : '' }}</h2>
+                                    <h4 class="slide-desc">{{ !empty($slider->caption) ? $slider->caption : '' }}</h4>
+                                    @if(!empty($slider->button_url) && !empty($slider->button_text))
+                                        <a href="{{ url('/').'/'.$slider->button_url }}" class="btn btn-hero">{{ $slider->button_text }}</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- single slider item start -->
-
-        <!-- single slider item start -->
-        <div class="hero-single-slide hero-overlay">
-            <div class="hero-slider-item bg-img" data-bg="{{asset('frontend/img/slider/home1-slide3.jpg')}}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="hero-slider-content slide-2 float-md-right float-none">
-                                <h2 class="slide-title">Diamonds Jewellery<span>Collection</span></h2>
-                                <h4 class="slide-desc">Shukra Yogam & Silver Power Silver Saving Schemes.</h4>
-                                <a href="shop.html" class="btn btn-hero">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- single slider item start -->
-
-        <!-- single slider item start -->
-        <div class="hero-single-slide hero-overlay">
-            <div class="hero-slider-item bg-img" data-bg="{{asset('frontend/img/slider/home1-slide1.jpg')}}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="hero-slider-content slide-3">
-                                <h2 class="slide-title">Grace Designer<span>Jewellery</span></h2>
-                                <h4 class="slide-desc">Rings, Occasion Pieces, Pandora & More.</h4>
-                                <a href="shop.html" class="btn btn-hero">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- single slider item end -->
+            <!-- single slider item start -->
+        @endforeach
     </div>
 </section>
 <!-- Hero Slider Area End -->

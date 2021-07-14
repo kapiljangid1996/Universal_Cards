@@ -297,5 +297,12 @@
 
         <!-- Main JS -->
         <script src="{{asset('frontend/js/main.js')}}"></script>
+
+        <!-- Extra Scripts -->
+        <script>
+            $(document).ready(function() {
+                $('.hero-slider-content:even').addClass("float-md-right float-none");
+            });
+        </script>
     </body>
 </html>
