@@ -15,6 +15,9 @@
 			<li class="dropdown">
 				<a href="{{ url('/admin/menu-builder') }}" class="nav-link"><i data-feather="menu"></i><span>Menu Builder</span></a>
 			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/sliders') }}" class="nav-link"><i data-feather="camera"></i><span>Slider</span></a>
+			</li>
 		</ul>
 	</aside>
 </div>

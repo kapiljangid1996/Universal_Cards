@@ -84,6 +84,16 @@
 		<!-- Custom JS File -->
 		<script src="{{ asset('backend/js/custom.js')}}"></script>
 
+	    <!-- Slugify End -->
+	    <script type="text/javascript">
+	        $("#name").keyup(function(){
+	            var Text = $(this).val();
+	            Text = Text.toLowerCase();
+	            Text = Text.replace(/[^a-zA-Z0-9]+/g,'-');
+	            $("#slug").val(Text);
+	        });
+	    </script>
+
 		<!-- Extra Scripts -->
     	@yield('scripts')
 	</body>

@@ -43,4 +43,8 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     Route::post('/menu/ajaxDeleteMenuPage', [MenusController::class, 'ajaxDeleteMenuPage']);    
     Route::post('/menu/ajaxMenuPageDetail', [MenusController::class, 'ajaxMenuPageDetail']);    
     Route::post('/menu/ajaxEditMenuPage', [MenusController::class, 'ajaxEditMenuPage']);
+
+    //Sliders
+    Route::resource('sliders', App\Http\Controllers\Admin\SlidersController::class); 
+    Route::get('/sliders/delete/{id}', [App\Http\Controllers\Admin\SlidersController::class, 'destroy']);
 });
