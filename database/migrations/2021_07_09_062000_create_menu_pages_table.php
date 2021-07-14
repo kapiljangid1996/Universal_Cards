@@ -25,7 +25,6 @@ class CreateMenuPagesTable extends Migration
             $table->string('page_type')->nullable();
             $table->integer('page_id')->default(0);
             $table->boolean('mega_menu')->default(0);
-            $table->string('mega_menu_row')->nullable();
             $table->timestamps();
         });
     }

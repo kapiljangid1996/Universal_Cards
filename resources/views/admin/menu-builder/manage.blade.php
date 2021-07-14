@@ -34,17 +34,6 @@
 								<input type="checkbox" class="form-check-input" id="mega_menu1" name="mega_menu" value="1">
 								<label class="form-check-label" for="mega_menu1">Mega Menu</label>
 							</div>
-			            </div>							
-		                <div class="form-group row">
-		                	<div class="col-md-12">
-				                <select class="form-control" name="mega_menu_row" id="mega_menu_row1">
-									<option selected="" disabled="">Please Select Mega Menu Row</option>
-									<option value="1">Row 1</option>
-									<option value="2">Row 2</option>
-									<option value="3">Row 3</option>
-									<option value="4">Row 4</option>
-								</select>		                		
-		                	</div>
 			            </div>
 			            <input type="hidden" name="link_type" value="<?php echo 'custom-links'; ?>">
 			            <input type="hidden" name="menu_id" value="<?php echo $menu_id; ?>">
@@ -173,6 +162,7 @@
 							$('#menu_title').val(result.response.title);
 							$('#menu_slug').val(result.response.slug);
 							$('#menu_page_id').val(result.response.id);
+
 							if(result.response.status == 1){
 								$('#menu_status').prop('checked',true);
 							}else{
@@ -187,14 +177,9 @@
 							
 							if(result.response.mega_menu == 1){
 								$('#mega_menu').prop('checked',true);
-								$('#mega_menu_row').prop('disabled', false);
 							}else{
 								$('#mega_menu').prop('checked',false);
-								$('#mega_menu_row').prop('selectedIndex',0);
-								$('#mega_menu_row').prop('disabled', true);
 							}
-
-							$('#mega_menu_row').val(result.response.mega_menu_row);
 
 							$('#menu_slug').attr('readonly',true);
 
@@ -215,7 +200,6 @@
 			var menu_title = $('#menu_title').val();
 			var menu_slug = $('#menu_slug').val();
 			var menu_page_id = $('#menu_page_id').val();
-			var mega_menu_row = $('#mega_menu_row').find('option:selected').val();
 			var menu_status = 0;
 			var menu_new_tab = 0;
 			var mega_menu = 0;
@@ -265,33 +249,6 @@
 			
 		});
 	});	
-
-	$(document).ready(function () {
-		$('#mega_menu').click(function() {
-		    if ($('#mega_menu').is(":checked")) {
-		    	$('#mega_menu_row').prop('disabled', false);
-		    }
-		    else {
-		    	$('#mega_menu_row').prop('selectedIndex',0);
-		    	$('#mega_menu_row').prop('disabled', true);
-		    }
-		});
-
-		$('#mega_menu1').click(function() {
-		    if ($('#mega_menu1').is(":checked")) {
-		    	$('#mega_menu_row1').prop('disabled', false);
-		    }
-		    else {
-		    	$('#mega_menu_row1').prop('selectedIndex',0);
-		    	$('#mega_menu_row1').prop('disabled', true);
-		    }
-		});
-	});
-
-	$(window).on('load', function () {
-		$('#mega_menu_row1').prop('disabled', true);
-		$('#mega_menu_row').prop('disabled', true);
-	});
 </script>
 
 <!-- Edit Menu Structure Modal Start -->
@@ -331,18 +288,7 @@
 							<input type="checkbox" class="form-check-input" id="mega_menu" value="1">
 							<label class="form-check-label" for="mega_menu">Mega Menu</label>
 						</div>
-		            </div>							
-	                <div class="form-group row">
-	                	<div class="col-md-12">
-			                <select class="form-control" id="mega_menu_row">
-								<option selected="" disabled="">Please Select Mega Menu Row</option>
-								<option value="1">Row 1</option>
-								<option value="2">Row 2</option>
-								<option value="3">Row 3</option>
-								<option value="4">Row 4</option>
-							</select>		                		
-	                	</div>
-		            </div>
+		            </div>	
 					<input type="hidden" class="form-control" id="menu_page_id">
 				</div>
 				<div class="modal-footer m-r-10">
