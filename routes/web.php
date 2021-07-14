@@ -20,6 +20,9 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+//Admin Logout
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
 //Front User Routing
 Route::group(['middleware' => ['auth', 'user', 'PreventBackHistory'], 'prefix' => 'user'], function () {
     //User Dashboard
