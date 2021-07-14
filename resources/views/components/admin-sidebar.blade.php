@@ -2,9 +2,7 @@
 	<aside id="sidebar-wrapper">
 		<div class="sidebar-brand">
 			<a href="{{ url('/admin') }}">
-				<img class="header-logo" src="{{ asset('backend/img/logo.png')}}" alt="image" />
-				<span
-                class="logo-name"> Otika </span>
+				<span class="header-logo"> UV </span>
 			</a>
 		</div>
 		<ul class="sidebar-menu">
