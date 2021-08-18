@@ -16,6 +16,12 @@
 			<li class="dropdown">
 				<a href="{{ url('/admin/sliders') }}" class="nav-link"><i data-feather="camera"></i><span>Slider</span></a>
 			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/category') }}" class="nav-link"><i data-feather="layers"></i><span>Category Manager</span></a>
+			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/cards') }}" class="nav-link"><i class="far fa-envelope-open"></i><span>Cards</span></a>
+			</li>
 		</ul>
 	</aside>
 </div>

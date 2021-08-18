@@ -50,4 +50,13 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     //Sliders
     Route::resource('sliders', App\Http\Controllers\Admin\SlidersController::class); 
     Route::get('/sliders/delete/{id}', [App\Http\Controllers\Admin\SlidersController::class, 'destroy']);
+
+    //Category Manager
+    Route::resource('category', App\Http\Controllers\Admin\CategoriesController::class); 
+    Route::get('/category/delete/{id}', [App\Http\Controllers\Admin\CategoriesController::class, 'destroy']);
+
+    //Category Manager
+    Route::resource('cards', App\Http\Controllers\Admin\CardsController::class); 
+    Route::get('/cards/delete/{id}', [App\Http\Controllers\Admin\CardsController::class, 'destroy']);
+    Route::post('/card-image/delete/{id}', [App\Http\Controllers\Admin\CardsController::class, 'removeCardImage']);
 });
