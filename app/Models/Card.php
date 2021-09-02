@@ -11,7 +11,17 @@ class Card extends Model
 
     protected $table = 'cards';
 
-    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invite_image', 'designer_image', 'trending_now', 'shipping_free'];
+    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'category_id', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invite_image', 'designer_image', 'trending_now', 'shipping_free'];
+
+    public function category_detail()
+    {
+        return $this->belongsTo('App\Models\Category','category_id');
+    }
+
+    public function cardImages()
+    {
+        return $this->hasMany('App\Models\CardImage');
+    }
 
     public static function storeCard($request){
         $cards = new Card();
@@ -23,6 +33,7 @@ class Card extends Model
         $cards -> sample_price = request('sample_price');
         $cards -> orientation = request('orientation');
         $cards -> card_color = request('card_color');
+        $cards -> category_id = request('category_id');
         $cards -> description = request('description');
         $cards -> extra_info = (isset($request['extra_info']))?1:0;
         $cards -> pattern = request('pattern');
@@ -54,19 +65,21 @@ class Card extends Model
 
         $lastInsertedId = $cards->id;
 
-        foreach ($request->addmore as $key => $value) {
-            $data = new CardImage();
-            $data -> card_id = $lastInsertedId;
-            $data -> image_type = $value['image_type'];
-            $data -> image_caption = $value['image_caption'];
-            
-            if (!empty($value['image_type'])){
-                $imageName = time()."-".$value['image_type']."-".$value['image']->getClientOriginalName();
-                $value['image']->move(public_path('Uploads/Card/Gallary'), $imageName);
-                $data -> image = $imageName;
+        if (!empty($request->addmore[0]['image_caption'])) {
+            foreach ($request->addmore as $key => $value) {
+                $data = new CardImage();
+                $data -> card_id = $lastInsertedId;
+                $data -> image_type = $value['image_type'];
+                $data -> image_caption = $value['image_caption'];
+                
+                if (!empty($value['image_type'])){
+                    $imageName = time()."-".$value['image_type']."-".$value['image']->getClientOriginalName();
+                    $value['image']->move(public_path('Uploads/Card/Gallary'), $imageName);
+                    $data -> image = $imageName;
+                }
+                $data->save();
             }
-            $data->save();
-        }
+        }            
     }
 
     public static function editCard($request,$id)

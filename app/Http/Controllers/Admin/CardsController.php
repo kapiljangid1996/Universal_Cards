@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Card;
 use App\Models\CardImage;
 use File;
@@ -18,7 +19,8 @@ class CardsController extends Controller
 
     public function create()
     {
-        return view('admin.card-manager.add');
+        $categories = Category::all();
+        return view('admin.card-manager.add')->with('categories', $categories);
     }
 
     public function show($id)
@@ -36,7 +38,8 @@ class CardsController extends Controller
     {
         $cards = Card::find($id);
         $data = CardImage::where('card_id', $id)->get();
-        return view('admin.card-manager.edit')->with('cards',$cards)->with('data', $data);
+        $categories = Category::with('children')->whereNull('parent_id')->get();
+        return view('admin.card-manager.edit')->with('cards',$cards)->with('data', $data)->with('categories',$categories);
     }
 
     public function update(Request $request, $id)

@@ -23,6 +23,7 @@ class CreateCardsTable extends Migration
             $table->string('sample_price')->nullable();
             $table->string('orientation')->nullable();
             $table->string('card_color')->nullable();
+            $table->integer('category_id')->nullable();
             $table->longtext('description')->nullable();            
             $table->boolean('extra_info')->default(0);
             $table->string('pattern')->nullable();

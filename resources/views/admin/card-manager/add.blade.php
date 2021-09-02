@@ -39,7 +39,7 @@
                                 <label class="form-label">Sample Price <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="sample_price" placeholder="Sample Price" required="">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-2">
                                 <label class="form-label">Orientation <span class="text-danger">*</span></label>
                                 <select class="form-control" name="orientation" required="">
                                     <option selected disabled>Choose Orientation Please</option>
@@ -47,7 +47,7 @@
                                     <option value="landscape">Landscape</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label class="form-label">Card Color <span class="text-danger">*</span></label>
                                 <select class="form-control" name="card_color" required="">
                                     <option selected disabled>Choose Color Please</option>
@@ -64,6 +64,15 @@
                                     <option value="black_grey">Black / Grey</option>
                                     <option value="brown">Brown</option>
                                     <option value="green_olive_aqua">Green / Olive / Aqua</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Choose Category <span class="text-danger">*</span></label>
+                                <select class="form-control" name="category_id" required="">
+                                    <option selected disabled>Choose Category Please</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-12">

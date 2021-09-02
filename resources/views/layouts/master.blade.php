@@ -43,6 +43,9 @@
 
         <!-- main style css -->
         <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+
+        <!-- Cutsom Css On Certain Page -->
+        @yield('cst_css') 
     </head>
 
     <body>

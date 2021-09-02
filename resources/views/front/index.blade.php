@@ -2,6 +2,18 @@
 
 @section('title', 'Universal Wedding Cards')
 
+@section('cst_css')
+<style>
+    .banner-text2 {
+        padding-top: 15px;
+    }
+
+    .banner-statistics img {
+        height: 205px;
+    }
+</style>
+@stop
+
 @section('content')
 <!-- Hero Slider Area Start -->
 <section class="slider-area">
@@ -103,54 +115,18 @@
 <div class="banner-statistics-area">
     <div class="container">
         <div class="row row-20 mtn-20">
-            <div class="col-sm-6">
+            @foreach($categories as $category)
+            <div class="col-sm-4">
                 <figure class="banner-statistics mt-20">
                     <a href="#">
-                        <img src="{{asset('frontend/img/banner/img1-top.jpg')}}" alt="product banner">
+                        <img src="{{asset('Uploads/Category').'/'.$category->image}}" alt="product banner">
                     </a>
-                    <div class="banner-content text-right">
-                        <h5 class="banner-text1">BEAUTIFUL</h5>
-                        <h2 class="banner-text2">Wedding<span>Rings</span></h2>
-                        <a href="shop.html" class="btn btn-text">Shop Now</a>
-                    </div>
                 </figure>
+                <div>
+                    <h5 class="banner-text2 text-center">{{ $category->name }}</h5>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <figure class="banner-statistics mt-20">
-                    <a href="#">
-                        <img src="{{asset('frontend/img/banner/img2-top.jpg')}}" alt="product banner">
-                    </a>
-                    <div class="banner-content text-center">
-                        <h5 class="banner-text1">EARRINGS</h5>
-                        <h2 class="banner-text2">Tangerine Floral <span>Earring</span></h2>
-                        <a href="shop.html" class="btn btn-text">Shop Now</a>
-                    </div>
-                </figure>
-            </div>
-            <div class="col-sm-6">
-                <figure class="banner-statistics mt-20">
-                    <a href="#">
-                        <img src="{{asset('frontend/img/banner/img3-top.jpg')}}" alt="product banner">
-                    </a>
-                    <div class="banner-content text-center">
-                        <h5 class="banner-text1">NEW ARRIVALLS</h5>
-                        <h2 class="banner-text2">Pearl<span>Necklaces</span></h2>
-                        <a href="shop.html" class="btn btn-text">Shop Now</a>
-                    </div>
-                </figure>
-            </div>
-            <div class="col-sm-6">
-                <figure class="banner-statistics mt-20">
-                    <a href="#">
-                        <img src="{{asset('frontend/img/banner/img4-top.jpg')}}" alt="product banner">
-                    </a>
-                    <div class="banner-content text-right">
-                        <h5 class="banner-text1">NEW DESIGN</h5>
-                        <h2 class="banner-text2">Diamond<span>Jewelry</span></h2>
-                        <a href="shop.html" class="btn btn-text">Shop Now</a>
-                    </div>
-                </figure>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
