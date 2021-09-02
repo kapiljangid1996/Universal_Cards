@@ -42,9 +42,17 @@
 	                        	{!! $errors->first('caption', '<small class="text-danger">:message</small>') !!}
 							</div>
 							<div class="form-group col-md-6">
+								<label for="Caption Color">Caption Color</label>
+								<input class="form-control" type="color" name="captioncolorpick" value="{{$sliders->captioncolorpick}}">
+							</div>
+							<div class="form-group col-md-6">
 								<label for="Button Text">Button Text</label>
 		                		<input class="form-control" type="text" name="button_text" value="{{$sliders->button_text}}">
 	                        	{!! $errors->first('button_text', '<small class="text-danger">:message</small>') !!}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="Button Color">Button Color</label>
+								<input class="form-control" type="color" name="btncolorpick" value="{{$sliders->btncolorpick}}">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="Button Url">Button Url</label>

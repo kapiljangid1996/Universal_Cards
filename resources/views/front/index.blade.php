@@ -28,9 +28,9 @@
                             <div class="col-md-12">
                                 <div class="hero-slider-content slide-<?php echo $i++ ?>">
                                     <!-- <h2 class="slide-title">{{ !empty($slider->title) ? $slider->title : '' }}</h2> -->
-                                    <h4 class="slide-desc">{{ !empty($slider->caption) ? $slider->caption : '' }}</h4>
+                                    <h4 class="slide-desc" style="color: <?php echo $slider->captioncolorpick ?>;">{{ !empty($slider->caption) ? $slider->caption : '' }}</h4>
                                     @if(!empty($slider->button_url) && !empty($slider->button_text))
-                                        <a href="{{ url('/').'/'.$slider->button_url }}" class="btn btn-hero">{{ $slider->button_text }}</a>
+                                        <a href="{{ url('/').'/'.$slider->button_url }}" class="btn btn-hero" style="color: <?php echo $slider->btncolorpick ?>;">{{ $slider->button_text }}</a>
                                     @endif
                                 </div>
                             </div>
