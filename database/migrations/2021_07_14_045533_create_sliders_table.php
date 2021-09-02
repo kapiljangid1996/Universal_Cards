@@ -19,7 +19,9 @@ class CreateSlidersTable extends Migration
             $table->string('slug');
             $table->string('image')->nullable();
             $table->longtext('caption')->nullable();
+            $table->longtext('captioncolorpick')->nullable();
             $table->string('button_text')->nullable();
+            $table->string('btncolorpick')->nullable();
             $table->string('button_url')->nullable();
             $table->string('meta_name')->nullable();
             $table->longtext('meta_keyword')->nullable();

@@ -30,15 +30,26 @@
 								</div>
 	                            {!! $errors->first('image', '<small class="text-danger">:message</small>') !!}
 							</div>
+							<div class="form-group col-md-6"></div>
 							<div class="form-group col-md-6">
 								<label for="Caption">Caption</label>
 		                		<input class="form-control" type="text" name="caption" value="{{old('caption')}}">
 	                        	{!! $errors->first('caption', '<small class="text-danger">:message</small>') !!}
 							</div>
 							<div class="form-group col-md-6">
+								<label for="Caption Color">Caption Color</label>
+								<input class="form-control" type="color" name="captioncolorpick" value="#0000ff">
+	                        	{!! $errors->first('captioncolorpick', '<small class="text-danger">:message</small>') !!}
+							</div>
+							<div class="form-group col-md-6">
 								<label for="Button Text">Button Text</label>
 		                		<input class="form-control" type="text" name="button_text" value="{{old('button_text')}}">
 	                        	{!! $errors->first('button_text', '<small class="text-danger">:message</small>') !!}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="Button Color">Button Color</label>
+								<input class="form-control" type="color" name="btncolorpick" value="#0000ff">
+	                        	{!! $errors->first('btncolorpick', '<small class="text-danger">:message</small>') !!}
 							</div>
 							<div class="form-group col-md-6">
 								<label for="Button Url">Button Url</label>

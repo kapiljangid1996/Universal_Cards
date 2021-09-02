@@ -11,7 +11,7 @@ class Slider extends Model
 
     protected $table = 'sliders';
 
-    protected $fillable = ['title', 'slug', 'image', 'caption', 'button_text', 'button_url', 'meta_name', 'meta_keyword', 'meta_description', 'sort_order', 'status'];
+    protected $fillable = ['title', 'slug', 'image', 'caption', 'captioncolorpick', 'button_text', 'btncolorpick', 'button_url', 'meta_name', 'meta_keyword', 'meta_description', 'sort_order', 'status'];
 
     public static function storeSlider($request)
     {
@@ -31,7 +31,9 @@ class Slider extends Model
         $sliders -> title = request('title');
         $sliders -> slug = request('slug');
         $sliders -> caption = request('caption');
+        $sliders -> captioncolorpick = request('captioncolorpick');
         $sliders -> button_text = request('button_text');
+        $sliders -> btncolorpick = request('btncolorpick');
         $sliders -> button_url = request('button_url');
         $sliders -> meta_name = request('meta_name');
         $sliders -> meta_keyword = request('meta_keyword');
@@ -64,7 +66,9 @@ class Slider extends Model
         $sliders -> title = $request->input('title');
         $sliders -> slug = $request->input('slug');
         $sliders -> caption = $request->input('caption');
+        $sliders -> captioncolorpick = $request->input('captioncolorpick');
         $sliders -> button_text = $request->input('button_text');
+        $sliders -> btncolorpick = $request->input('btncolorpick');
         $sliders -> button_url = $request->input('button_url');
         $sliders -> meta_name = $request->input('meta_name');
         $sliders -> meta_keyword = $request->input('meta_keyword');
