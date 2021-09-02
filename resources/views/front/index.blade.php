@@ -171,10 +171,16 @@
                                         @if($category_tab->slug == $card->category_detail->slug)
                                             <div class="product-item">
                                                 <figure class="product-thumb">
-                                                    <a href="javascript:void(0)">
-                                                        <img class="pri-img" src="{{asset('frontend/img/product/product-1.jpg')}}" alt="product">
-                                                        <img class="sec-img" src="{{asset('frontend/img/product/product-18.jpg')}}" alt="product">
-                                                    </a>
+                                                    @foreach($card->cardImages as $key => $cardImg)
+                                                        <a href="javascript:void(0)">
+                                                            @if(!empty($cardImg->image_type) && $cardImg->image_type == 'main_view')
+                                                                <img class="pri-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
+                                                            @endif
+                                                            @if(!empty($cardImg->image_type) && $cardImg->image_type == 'front_view')
+                                                                <img class="sec-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
+                                                            @endif
+                                                        </a>
+                                                    @endforeach
                                                     <div class="product-badge">
                                                         <div class="product-label new">
                                                             <span>new</span>
