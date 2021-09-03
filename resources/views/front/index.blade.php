@@ -192,7 +192,7 @@
                                                     <div class="button-group">
                                                         <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
                                                         <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                        <a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
+                                                        <a class="quick_view" data-id="{{ $card->id }}" data-toggle="tooltip" data-placement="left" title="View Detail"><i class="pe-7s-search"></i></span></a>
                                                     </div>
                                                     <div class="cart-hover">
                                                         <button class="btn btn-cart">add to cart</button>
@@ -1431,4 +1431,24 @@
     </div>
 </section>
 <!-- latest blog area end -->
+@stop
+
+@section('cst_script')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.quick_view').click(function () {
+            var custId = $(this).data('id');
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "{{route('get.card.popup')}}",
+                type: 'post',
+                data: { _token: _token, custId: custId },
+                success: function (response) {
+                    $('.modal-body').html(response);
+                    $('#quick_view').modal('show');
+                }
+            });
+        });
+    });
+</script>
 @stop

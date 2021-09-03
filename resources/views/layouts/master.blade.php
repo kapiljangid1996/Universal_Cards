@@ -11,6 +11,8 @@
 
         <meta name="description" content="">
 
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Favicon -->
@@ -166,7 +168,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- product details inner end -->
+                        </div> 
+                        <!-- product details inner end -->
                     </div>
                 </div>
             </div>
@@ -307,5 +310,7 @@
                 $('.hero-slider-content:even').addClass("float-md-right float-none");
             });
         </script>
+
+        @yield('cst_script')
     </body>
 </html>

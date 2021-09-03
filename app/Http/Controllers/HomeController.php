@@ -16,4 +16,28 @@ class HomeController extends Controller
         $cards = Card::with('category_detail')->with('cardImages')->get();
         return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards);
     }
+
+    public function getCardPopup(Request $request)
+    {
+        $cards = Card::with('category_detail')->with('cardImages')->where('id', $request->custId)->get();
+        $response = '<div class="product-details-inner">';
+            $response .= '<div class="row">';
+                $response .= '<div class="col-lg-5">';
+                    $response .= '<div class="product-large-slider">';
+                        $response .= '<div class="pro-large-img img-zoom">';
+
+                            foreach($cards[0]['cardImages'] as $key => $cardImg){
+                                if (!empty($cardImg->image_type) && $cardImg->image_type == 'main_view') {
+                                    $response .= '<img src="'. asset('Uploads/Card/Gallary')."/" .$cardImg->image.'" alt="'.$cardImg->image_caption.'">';
+                                }
+                            }                                
+                            
+                        $response .= '</div>';
+                    $response .= '</div>';
+                $response .= '</div>';
+            $response .= '</div>';
+        $response .= '</div>';
+        echo $response;
+        exit;
+    }
 }
