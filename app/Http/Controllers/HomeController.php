@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Card;
 use App\Models\Testimonial;
+use App\Models\Blog;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,8 @@ class HomeController extends Controller
         $categories = Category::where('parent_id', NULL)->take(6)->get();
         $cards = Card::with('category_detail')->with('cardImages')->get();
         $testimonials = Testimonial::where('status', 1)->orderBy('sort_order', 'ASC')->get();
-        return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards)->with('testimonials', $testimonials);
+        $blogs = Blog::where('status', 1)->orderBy('sort_order', 'ASC')->get();
+        return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards)->with('testimonials', $testimonials)->with('blogs', $blogs);
     }
 
     public function getCardPopup(Request $request)
