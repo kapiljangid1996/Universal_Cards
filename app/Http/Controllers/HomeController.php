@@ -46,8 +46,8 @@ class HomeController extends Controller
                 $response .= '</div>';                
                 $response .= '<div class="col-lg-7">';                
                     $response .= '<div class="product-details-des">';    
-                        $response .= '<div class="manufacturer-name">';    
-                            $response .= '<a href="javascript:void(0)"><h3 class="product-name">'.$cards[0]->card_code.'</h3></a>';        
+                        $response .= '<div class="manufacturer-name mb-2">';    
+                            $response .= '<a href="javascript:void(0)"><h3 class="product-name">'.$cards[0]->card_code.'</h3> <span>'.$cards[0]->category_detail->name.'</span></a>';        
                         $response .= '</div>'; 
 
                         $response .= '<div class="ratings d-flex">';
@@ -62,9 +62,14 @@ class HomeController extends Controller
                         $response .= '</div>';
 
                         $response .= '<div class="price-box">';  
-                            $response .= '<span class="price-regular">Price - ₹ '.$cards[0]->price.'</span>';         
-                            $response .= '<span class="price-old ml-4">Sample Price - ₹ '.$cards[0]->sample_price.'</span>';
-                        $response .= '</div><hr>'; 
+                            $response .= '<span>Price - &nbsp; ₹ '.$cards[0]->price.'</span>';              
+                        $response .= '</div>'; 
+
+                        $response .= '<p class="price-old pl-0">Sample Price - &nbsp; ₹ '.$cards[0]->sample_price.'</p>';
+
+                        $response .= '<p class="pl-0">Size - &nbsp; '.$cards[0]->width.' * '.$cards[0]->height.'</p>';
+
+                        $response .= '<p class="pl-0">Orientation -  &nbsp; '.$cards[0]->orientation.'</p><hr>';
 
                         $response .= '<p class="pro-desc">'.$cards[0]->description.'</p><hr>'; 
 
@@ -81,6 +86,13 @@ class HomeController extends Controller
                         $response .= '<div class="useful-links">';
                             $response .= '<a href="#" data-toggle="tooltip" title="Compare"><i class="pe-7s-refresh-2"></i>compare</a>';
                             $response .= '<a href="#" data-toggle="tooltip" title="Wishlist"><i class="pe-7s-like"></i>wishlist</a>';
+                        $response .= '</div>';
+
+                        $response .= '<div class="like-icon">';
+                        $response .= '<a class="facebook" href="#"><i class="fa fa-facebook"></i>like</a>';
+                        $response .= '<a class="twitter" href="#"><i class="fa fa-twitter"></i>tweet</a>';
+                        $response .= '<a class="pinterest" href="#"><i class="fa fa-pinterest"></i>save</a>';
+                        $response .= '<a class="google" href="#"><i class="fa fa-google-plus"></i>share</a>';
                         $response .= '</div>';
                     $response .= '</div>';            
                 $response .= '</div>';            
