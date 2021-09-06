@@ -22,6 +22,9 @@
 			<li class="dropdown">
 				<a href="{{ url('/admin/cards') }}" class="nav-link"><i class="far fa-envelope-open"></i><span>Cards</span></a>
 			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/testimonials') }}" class="nav-link"><i data-feather="message-square"></i><span>Testimonials</span></a>
+			</li>
 		</ul>
 	</aside>
 </div>

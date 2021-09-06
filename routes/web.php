@@ -61,4 +61,8 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     Route::resource('cards', App\Http\Controllers\Admin\CardsController::class); 
     Route::get('/cards/delete/{id}', [App\Http\Controllers\Admin\CardsController::class, 'destroy']);
     Route::post('/card-image/delete/{id}', [App\Http\Controllers\Admin\CardsController::class, 'removeCardImage']);
+
+    //Testimonials Manager
+    Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialsController::class); 
+    Route::get('/testimonials/delete/{id}', [App\Http\Controllers\Admin\TestimonialsController::class, 'destroy']);
 });
