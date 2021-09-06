@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
+use File;
 
 class TestimonialsController extends Controller
 {
@@ -44,6 +45,12 @@ class TestimonialsController extends Controller
 
     public function destroy($id)
     {
-        //
+        $testimonials = Testimonial::findOrFail($id);
+        if(!empty($testimonials) && !empty($testimonials['image'])){
+            $files = array("public/Uploads/Testimonial/".$testimonials['image']);
+            File::delete($files);
+        }
+        $testimonials->delete();
+        return redirect()->route('testimonials.index')->with('success','Testimonial deleted successfully!');
     }
 }

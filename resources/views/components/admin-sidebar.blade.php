@@ -25,6 +25,12 @@
 			<li class="dropdown">
 				<a href="{{ url('/admin/testimonials') }}" class="nav-link"><i data-feather="message-square"></i><span>Testimonials</span></a>
 			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/blogs') }}" class="nav-link"><i data-feather="clipboard"></i><span>Blogs</span></a>
+			</li>
+			<li class="dropdown">
+				<a href="{{ url('/admin/edit-site') }}" class="nav-link"><i data-feather="settings"></i><span>Edit Site Settings</span></a>
+			</li>
 		</ul>
 	</aside>
 </div>

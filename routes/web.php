@@ -65,4 +65,8 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     //Testimonials Manager
     Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialsController::class); 
     Route::get('/testimonials/delete/{id}', [App\Http\Controllers\Admin\TestimonialsController::class, 'destroy']);
+
+    //Blogs Manager
+    Route::resource('blogs', App\Http\Controllers\Admin\BlogsController::class); 
+    Route::get('/blogs/delete/{id}', [App\Http\Controllers\Admin\BlogsController::class, 'destroy']);
 });
