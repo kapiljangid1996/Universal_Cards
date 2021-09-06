@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Category;
 use App\Models\Card;
+use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
         $sliders = Slider::where('status', 1)->orderBy('sort_order', 'ASC')->get();
         $categories = Category::where('parent_id', NULL)->take(6)->get();
         $cards = Card::with('category_detail')->with('cardImages')->get();
-        return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards);
+        $testimonials = Testimonial::where('status', 1)->orderBy('sort_order', 'ASC')->get();
+        return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards)->with('testimonials', $testimonials);
     }
 
     public function getCardPopup(Request $request)
