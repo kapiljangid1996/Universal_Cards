@@ -162,15 +162,19 @@
                             <div class="form-group col-md-12">
                                 <label class="form-label">Meta Description</label>
                                 <textarea class="form-control" name="meta_description"></textarea>
-                            </div>                      
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Show this image on home page for Designer Collection (259px by 259px)</label>
-                                <input type="file" class="form-control-file" name="designer_image">
-                            </div>                      
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Show this image on home page for Indian Wedding Invitations (259px by 259px)</label>
-                                <input type="file" class="form-control-file" name="wedding_invite_image">
-                            </div>                         
+                            </div>                        
+                            <div class="form-group col-6">
+                                <label class="custom-control custom-checkbox m-0"> 
+                                    <input class="custom-control-input" type="checkbox" name="designer_collection" value="1" {{ old('designer_collection') == '1' ? 'checked' : '' }}>               
+                                    <span class="custom-control-label"></span> Show in Designer Collection on home page
+                                </label>
+                            </div> 
+                            <div class="form-group col-6">
+                                <label class="custom-control custom-checkbox m-0"> 
+                                    <input class="custom-control-input" type="checkbox" name="wedding_invitations" value="1" {{ old('wedding_invitations') == '1' ? 'checked' : '' }}>              
+                                    <span class="custom-control-label"></span> Show in Wedding Invitations on home page
+                                </label>
+                            </div>
                             <div class="form-group col-6">
                                 <label class="custom-control custom-checkbox m-0"> 
                                     <input class="custom-control-input" type="checkbox" name="trending_now" value="1" {{ old('trending_now') == '1' ? 'checked' : '' }}>               

@@ -36,8 +36,8 @@ class CreateCardsTable extends Migration
             $table->string('meta_name')->nullable();
             $table->longtext('meta_keyword')->nullable(); 
             $table->longtext('meta_description')->nullable(); 
-            $table->string('designer_image')->nullable();
-            $table->string('wedding_invite_image')->nullable();          
+            $table->boolean('designer_collection')->default(0);
+            $table->boolean('wedding_invitations')->default(0);         
             $table->boolean('trending_now')->default(0);          
             $table->boolean('shipping_free')->default(0);
             $table->timestamps();

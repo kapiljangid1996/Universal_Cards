@@ -51,10 +51,6 @@ class CardsController extends Controller
     public function destroy($id)
     {
         $cards = Card::findOrFail($id);
-        if(!empty($cards) && !empty($cards['designer_image']) && !empty($cards['wedding_invite_image'])){
-            $files = array("public/Uploads/Card/Designer-Image/".$cards['designer_image'], "public/Uploads/Card/Wedding-Invite-Image/".$cards['wedding_invite_image']);
-            File::delete($files);
-        }
         $images = CardImage::where('card_id', $id)->get();
         foreach ($images as $key => $value) {
             if (!empty($value->image)) {

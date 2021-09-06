@@ -11,7 +11,7 @@ class Card extends Model
 
     protected $table = 'cards';
 
-    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'category_id', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invite_image', 'designer_image', 'trending_now', 'shipping_free'];
+    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'category_id', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invitations', 'designer_collection', 'trending_now', 'shipping_free'];
 
     public function category_detail()
     {
@@ -46,20 +46,10 @@ class Card extends Model
         $cards -> meta_name = request('meta_name');
         $cards -> meta_keyword = request('meta_keyword');
         $cards -> meta_description = request('meta_description');
+        $cards -> designer_collection = (isset($request['designer_collection']))?1:0;
+        $cards -> wedding_invitations = (isset($request['wedding_invitations']))?1:0;
         $cards -> trending_now = (isset($request['trending_now']))?1:0;
         $cards -> shipping_free = (isset($request['shipping_free']))?1:0;
-
-        if (request()->file('wedding_invite_image')){
-            $wedInviteImage =$request->get('card_code')."-".request()->wedding_invite_image->getClientOriginalName();
-            request()->wedding_invite_image->move(public_path('Uploads/Card/Wedding-Invite-Image'), $wedInviteImage); 
-            $cards->wedding_invite_image = $wedInviteImage;
-        }
-
-        if (request()->file('designer_image')){
-            $designerImage =$request->get('card_code')."-".request()->designer_image->getClientOriginalName();
-            request()->designer_image->move(public_path('Uploads/Card/Designer-Image'), $designerImage); 
-            $cards->designer_image = $designerImage;
-        }
 
         $cards->save();
 
@@ -105,30 +95,10 @@ class Card extends Model
         $cards -> meta_name = request('meta_name');
         $cards -> meta_keyword = request('meta_keyword');
         $cards -> meta_description = request('meta_description');
+        $cards -> designer_collection = (isset($request['designer_collection']))?1:0;
+        $cards -> wedding_invitations = (isset($request['wedding_invitations']))?1:0;
         $cards -> trending_now = (isset($request['trending_now']))?1:0;
         $cards -> shipping_free = (isset($request['shipping_free']))?1:0;
-
-        $old_designer_image = $request->input('old_designer_image');
-
-        $old_wedding_invite_image = $request->input('old_wedding_invite_image');
-
-        if (request()->file('wedding_invite_image')){
-            if(!empty($old_wedding_invite_image)){
-                unlink(public_path("Uploads/Card/Wedding-Invite-Image/{$old_wedding_invite_image}"));
-            }
-            $wedInviteImage =$request->get('card_code')."-".request()->wedding_invite_image->getClientOriginalName();
-            request()->wedding_invite_image->move(public_path('Uploads/Card/Wedding-Invite-Image'), $wedInviteImage); 
-            $cards->wedding_invite_image = $wedInviteImage;
-        }
-
-        if (request()->file('designer_image')){
-            if(!empty($old_designer_image)){
-                unlink(public_path("Uploads/Card/Designer-Image/{$old_designer_image}"));
-            }
-            $designerImage =$request->get('card_code')."-".request()->designer_image->getClientOriginalName();
-            request()->designer_image->move(public_path('Uploads/Card/Designer-Image'), $designerImage); 
-            $cards->designer_image = $designerImage;
-        }
 
         $cards->save();        
 
