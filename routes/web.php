@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/get-card-popup', [HomeController::class, 'getCardPopup'])->name('get.card.popup');
 
+Route::post('/newsletter-submit', [App\Http\Controllers\Admin\NewslettersController::class, 'submitNewsletter'])->name('newsletter.submit');
+
 //Admin Logout
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 

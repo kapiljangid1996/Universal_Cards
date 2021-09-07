@@ -61,8 +61,10 @@
                 <div class="col-md-6">
                     <div class="newsletter-wrapper">
                         <h6 class="widget-title-text">Signup for newsletter</h6>
-                        <form class="newsletter-inner" id="mc-form">
-                            <input type="email" class="news-field" id="mc-email" autocomplete="off" placeholder="Enter your email address">
+                        <form action="{{ route('newsletter.submit') }}" class="newsletter-inner" method="POST">
+                            @csrf
+                            <input type="email" name="email_address" class="news-field" id="mc-email" autocomplete="off" placeholder="Enter your email address" required="">
+                            {!! $errors->first('email_address', '<small class="text-danger">:message</small>') !!}
                             <button class="news-btn" id="mc-submit">Subscribe</button>
                         </form>
                         <!-- mailchimp-alerts Start -->

@@ -55,7 +55,11 @@
         @include('components.header')
         <!-- End Header Area -->
 
-        <main>
+        <!-- Sweetalert -->
+            @include('sweetalert::alert')
+        <!-- End Sweetalert -->
+
+        <main>            
             @yield('content')            
         </main>
 
