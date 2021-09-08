@@ -29,7 +29,7 @@
 	                            {!! $errors->first('logo', '<small class="text-danger">:message</small>') !!}
 							</div>
 							<div class="form-group col-md-6">
-								@if(!empty($sites[0]->image))
+								@if(!empty($sites[0]->logo))
 	                            	<img src="{{asset('Uploads/Site').'/'.$sites[0]->logo}}"  width="100px">
 		                        @else
 		                            <img src="{{asset('backend/images/no-image.gif')}}"  width="100px">

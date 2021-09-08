@@ -11,7 +11,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="welcome-message">
-                            <p>Welcome to Corano Jewellery online store</p>
+                            <p>{{ !empty($settings->slogan) ? $settings->slogan : '' }}</p>
                         </div>
                     </div>
                     <div class="col-lg-6 text-right">
@@ -49,9 +49,15 @@
                     <!-- start logo area -->
                     <div class="col-lg-2">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="{{asset('frontend/img/logo/logo.png')}}" alt="Brand Logo">
-                            </a>
+                            @if( !empty($settings->logo) )
+                                <a href="{{ url('/') }}">
+                                    <img src="{{asset('Uploads/Site').'/'.$settings->logo}}" alt="Brand Logo">
+                                </a>
+                            @else
+                                <a href="{{ url('/') }}">                                    
+                                    <img src="{{asset('frontend/img/logo/logo.png')}}" alt="Brand Logo">
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <!-- start logo area -->
