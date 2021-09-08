@@ -29,7 +29,7 @@
 				<a href="{{ url('/admin/blogs') }}" class="nav-link"><i data-feather="clipboard"></i><span>Blogs</span></a>
 			</li>
 			<li class="dropdown">
-				<a href="{{ url('/admin/edit-site') }}" class="nav-link"><i data-feather="settings"></i><span>Edit Site Settings</span></a>
+				<a href="{{ url('/admin/site-setting') }}" class="nav-link"><i data-feather="settings"></i><span>Edit Site Settings</span></a>
 			</li>
 		</ul>
 	</aside>
