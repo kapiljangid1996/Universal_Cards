@@ -5,7 +5,12 @@
 
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <title>@yield('title')</title>
+        <title>
+            {{ $settings->title }} 
+            @hasSection('title')
+                | @yield('title')
+            @endif
+        </title>
 
         <meta name="robots" content="noindex, follow" />
 

@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-@section('title', 'Universal Wedding Cards')
-
 @section('cst_css')
 <style>
     .banner-text2 {
