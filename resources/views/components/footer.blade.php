@@ -12,7 +12,7 @@
                             </div>
                         </div>
                         <div class="widget-body">
-                            <p>We are a team of designers and developers that create high quality wordpress, shopify, Opencart </p>
+                            <p>{{ !empty($settings->footer_about) ? $settings->footer_about : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -22,9 +22,9 @@
                         <div class="widget-body">
                             <address class="contact-block">
                                 <ul>
-                                    <li><i class="pe-7s-home"></i> 4710-4890 Breckinridge USA</li>
-                                    <li><i class="pe-7s-mail"></i> <a href="mailto:demo@plazathemes.com">demo@yourdomain.com </a></li>
-                                    <li><i class="pe-7s-call"></i> <a href="tel:(012)800456789987">(012) 800 456 789-987</a></li>
+                                    <li><i class="pe-7s-home"></i> {{ !empty($settings->address) ? $settings->address : '' }}</li>
+                                    <li><i class="pe-7s-mail"></i> <a href="mailto:{{ !empty($settings->email_address) ? $settings->email_address : '' }}">{{ !empty($settings->email_address) ? $settings->email_address : '' }} </a></li>
+                                    <li><i class="pe-7s-call"></i> <a href="tel:{{ !empty($settings->phone_number) ? $settings->phone_number : '' }}">{{ !empty($settings->phone_number) ? $settings->phone_number : '' }}</a></li>
                                 </ul>
                             </address>
                         </div>
@@ -49,10 +49,10 @@
                     <div class="widget-item">
                         <h6 class="widget-title">Follow Us</h6>
                         <div class="widget-body social-link">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-youtube"></i></a>
+                            <a href="https://{{ !empty($settings->facebook) ? $settings->facebook : '' }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://{{ !empty($settings->twitter) ? $settings->twitter : '' }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://{{ !empty($settings->instagram) ? $settings->instagram : '' }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://{{ !empty($settings->youtube) ? $settings->youtube : '' }}" target="_blank"><i class="fa fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="copyright-text text-center">
-                        <p>Powered By <a href="#">Corano</a>. Store 1 © 2021</p>
+                        <p>{{ !empty($settings->footer_text) ? $settings->footer_text : '' }}</p>
                     </div>
                 </div>
             </div>
