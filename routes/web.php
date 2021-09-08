@@ -71,4 +71,8 @@ Route::group(['middleware' => ['auth', 'admin', 'PreventBackHistory'], 'prefix' 
     //Blogs Manager
     Route::resource('blogs', App\Http\Controllers\Admin\BlogsController::class); 
     Route::get('/blogs/delete/{id}', [App\Http\Controllers\Admin\BlogsController::class, 'destroy']);
+
+    //Site Setting
+    Route::get('/site-setting', [App\Http\Controllers\Admin\SitesController::class, 'index']);    
+    Route::post('/site-setting/{id}', [App\Http\Controllers\Admin\SitesController::class, 'update']);
 });

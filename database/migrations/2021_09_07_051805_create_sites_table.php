@@ -26,7 +26,7 @@ class CreateSitesTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->longtext('footer_about')->nullable();
-            $table->string('footer_text')->nullable();
+            $table->longtext('footer_text')->nullable();
             $table->string('meta_name')->nullable();
             $table->longtext('meta_keyword')->nullable();
             $table->longtext('meta_description')->nullable();
