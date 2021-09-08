@@ -15,6 +15,7 @@ class CreateSitesTable extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
             $table->string('logo')->nullable();
             $table->string('slogan')->nullable();
             $table->string('phone_number')->nullable();
@@ -32,6 +33,19 @@ class CreateSitesTable extends Migration
             $table->longtext('google_analyst')->nullable();
             $table->timestamps();
         });
+
+        DB::table('sites')->insert(
+        array(
+            'title' => 'Universal Wedding Cards',
+            'email_address' => 'info@universalweddingcards.com',
+            'phone_number' => '+91 123 456 7890',
+            'address' => 'Jaipur',
+            'instagram' => 'instagram.com',
+            'facebook' => 'facebook.com',
+            'youtube' => 'youtube.in',
+            'twitter' => 'twitter.com',
+            'footer_text' => '(c) Copyright 2021 Universal Wedding Cards',
+        ));
     }
 
     /**
