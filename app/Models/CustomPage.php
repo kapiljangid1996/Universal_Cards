@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CustomPage extends Model
 {
     use HasFactory;
+
+    protected $table = 'custom_pages';
 }
