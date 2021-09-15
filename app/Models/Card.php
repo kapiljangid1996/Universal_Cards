@@ -72,14 +72,12 @@ class Card extends Model
         }
 
         if (!empty($request->category_id)) {
-            foreach ($request->category_id as $key => $value) {
-                echo "<pre";
-                print_r($value);
-                die;
+            foreach ($request->category_id as $val) {
                 $data2 = new CardCategory();
-                $data2 -> category_id = $lastInsertedCardCode;
+                $data2 -> category_id = $val;
                 $data2 -> card_code = $lastInsertedCardCode;
                 $data2 -> card_id = $lastInsertedId;
+                $data2 -> save();
             }
         }           
     }
