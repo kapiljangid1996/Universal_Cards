@@ -115,37 +115,47 @@ class Card extends Model
         $cards -> trending_now = (isset($request['trending_now']))?1:0;
         $cards -> shipping_free = (isset($request['shipping_free']))?1:0;
 
-        $cards->save();        
+        $cards->save();     
 
-        foreach ($request->addmore as $key => $value) {
-
-            if (isset($value['image_id']) && !empty($value['image_id']) && isset($value['image']) && !empty($value['image']) ) {
-                $deleteCardImage = CardImage::where('card_id', $id)->where('id', $value['image_id'])->get();
-        
-                foreach ($deleteCardImage as $key => $val) {
-                    if (!empty($val->image)) {
-                        unlink(public_path('Uploads/Card/Gallary/') . $val->image);
-                       
-                    }
-                      $val->delete();           
-                }
-            }
-
-            if(isset($value['image']) && !empty($value['image'])){
-                $data = new CardImage();
-                $data -> card_id = $id;
-                $data -> image_type = $value['image_type'];
-                $data -> image_caption = $value['image_caption'];
-                
-                if (!empty($value['image'])){
-                    $imageName = time()."-".$value['image_type']."-".$value['image']->getClientOriginalName();
-                    $value['image']->move(public_path('Uploads/Card/Gallary'), $imageName);
-                    $data -> image = $imageName;
-                }
-
-                $data->save();
-            }
-           
+        if (!empty($request->category_id)) {
+            $deleteCardCategory = CardCategory::where('card_id', $id)->delete();
+            foreach ($request->category_id as $val) {
+                $data2 = new CardCategory();
+                $data2 -> category_id = $val;
+                $data2 -> card_code = request('card_code');
+                $data2 -> card_id = $id;
+                $data2 -> save();
+            }  
         }
+
+        if (!empty($request->addmore)) {
+            foreach ($request->addmore as $key => $value) {
+
+                if (isset($value['image_id']) && !empty($value['image_id']) && isset($value['image']) && !empty($value['image']) ) {
+                    $deleteCardImage = CardImage::where('card_id', $id)->where('id', $value['image_id'])->get();
+            
+                    foreach ($deleteCardImage as $key => $val) {
+                        if (!empty($val->image)) {
+                            unlink(public_path('Uploads/Card/Gallary/') . $val->image);                       
+                        }
+                        $val->delete();           
+                    }
+                }
+
+                if(isset($value['image']) && !empty($value['image'])){
+                    $data = new CardImage();
+                    $data -> card_id = $id;
+                    $data -> image_type = $value['image_type'];
+                    $data -> image_caption = $value['image_caption'];
+                    
+                    if (!empty($value['image'])){
+                        $imageName = time()."-".$value['image_type']."-".$value['image']->getClientOriginalName();
+                        $value['image']->move(public_path('Uploads/Card/Gallary'), $imageName);
+                        $data -> image = $imageName;
+                    }
+                    $data->save();
+                }               
+            }
+        } 
     }
 }
