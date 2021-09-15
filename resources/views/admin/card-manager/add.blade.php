@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label">Choose Category <span class="text-danger">*</span></label>
-                                <select class="form-control" name="category_id" required="">
+                                <select class="form-control" name="category_id" multiple="" required="" data-height="100%">
                                     <option selected disabled>Choose Category Please</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>

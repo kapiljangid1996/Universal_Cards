@@ -11,7 +11,7 @@ class Card extends Model
 
     protected $table = 'cards';
 
-    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'category_id', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invitations', 'designer_collection', 'trending_now', 'shipping_free'];
+    protected $fillable = ['card_code', 'height', 'width', 'weight', 'price', 'sample_price', 'orientation', 'card_color', 'description', 'extra_info', 'pattern', 'order_qty', 'included', 'available_extra_insert', 'material', 'youtube_link', 'more_information', 'meta_name', 'meta_keyword', 'meta_description', 'wedding_invitations', 'designer_collection', 'trending_now', 'shipping_free'];
 
     public function category_detail()
     {
@@ -33,7 +33,6 @@ class Card extends Model
         $cards -> sample_price = request('sample_price');
         $cards -> orientation = request('orientation');
         $cards -> card_color = request('card_color');
-        $cards -> category_id = request('category_id');
         $cards -> description = request('description');
         $cards -> extra_info = (isset($request['extra_info']))?1:0;
         $cards -> pattern = request('pattern');
@@ -54,6 +53,7 @@ class Card extends Model
         $cards->save();
 
         $lastInsertedId = $cards->id;
+        $lastInsertedCardCode = $cards->card_code;
 
         if (!empty($request->addmore[0]['image_caption'])) {
             foreach ($request->addmore as $key => $value) {
@@ -69,7 +69,19 @@ class Card extends Model
                 }
                 $data->save();
             }
-        }            
+        }
+
+        if (!empty($request->category_id)) {
+            foreach ($request->category_id as $key => $value) {
+                echo "<pre";
+                print_r($value);
+                die;
+                $data2 = new CardCategory();
+                $data2 -> category_id = $lastInsertedCardCode;
+                $data2 -> card_code = $lastInsertedCardCode;
+                $data2 -> card_id = $lastInsertedId;
+            }
+        }           
     }
 
     public static function editCard($request,$id)

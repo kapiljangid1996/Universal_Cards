@@ -117,7 +117,11 @@
             <div class="col-sm-4">
                 <figure class="banner-statistics mt-20">
                     <a href="#">
-                        <img src="{{asset('Uploads/Category').'/'.$category->image}}" alt="product banner">
+                        @if(!empty($category->image))
+                            <img src="{{asset('Uploads/Category').'/'.$category->image}}" alt="{{ $category->name }}">
+                        @else
+                            <img src="{{asset('backend/images/no-image.gif')}}">
+                        @endif
                     </a>
                 </figure>
                 <div>
@@ -166,7 +170,7 @@
                                 <div class="product-carousel-4 slick-row-10 slick-arrow-style">
                                     <!-- product item start -->
                                     @foreach($cards as $key => $card)
-                                        @if($category_tab->slug == $card->category_detail->slug)
+                                        @if(!empty($card->category_detail->slug) && $category_tab->slug == $card->category_detail->slug)
                                             <div class="product-item">
                                                 <figure class="product-thumb">
                                                     @foreach($card->cardImages as $key => $cardImg)
