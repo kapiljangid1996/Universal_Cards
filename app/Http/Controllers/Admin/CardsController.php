@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Card;
 use App\Models\CardImage;
+use App\Models\CardCategory;
 use File;
 
 class CardsController extends Controller
@@ -37,9 +38,14 @@ class CardsController extends Controller
     public function edit($id)
     {
         $cards = Card::find($id);
+        $dataCategory = array();
+        $cardCategory = CardCategory::where('card_id', $id)->get();
+        foreach ($cardCategory as $key => $value) {
+            $dataCategory[] = $value['category_id'];
+        }
         $data = CardImage::where('card_id', $id)->get();
         $categories = Category::with('children')->whereNull('parent_id')->get();
-        return view('admin.card-manager.edit')->with('cards',$cards)->with('data', $data)->with('categories',$categories);
+        return view('admin.card-manager.edit')->with('cards',$cards)->with('data', $data)->with('categories',$categories)->with('dataCategory',$dataCategory);
     }
 
     public function update(Request $request, $id)
@@ -51,6 +57,7 @@ class CardsController extends Controller
     public function destroy($id)
     {
         $cards = Card::findOrFail($id);
+        $cardCategory = CardCategory::where('card_id', $id)->delete();
         $images = CardImage::where('card_id', $id)->get();
         foreach ($images as $key => $value) {
             if (!empty($value->image)) {
@@ -59,7 +66,7 @@ class CardsController extends Controller
             $value->delete();
         }
         $cards->delete();
-        return redirect()->route('page-builder.index')->with('success','Custom page deleted successfully!');
+        return redirect()->route('cards.index')->with('success','Custom page deleted successfully!');
     }
 
     public function removeCardImage($id)

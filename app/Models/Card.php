@@ -23,6 +23,11 @@ class Card extends Model
         return $this->hasMany('App\Models\CardImage');
     }
 
+    public function cardCategories()
+    {
+        return $this->hasMany('App\Models\CardCategory');
+    }
+
     public static function storeCard($request){
         $cards = new Card();
         $cards -> card_code = request('card_code');
