@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $sliders = Slider::where('status', 1)->orderBy('sort_order', 'ASC')->get();
         $categories = Category::where('parent_id', NULL)->take(6)->get();
-        $cards = Card::with('category_detail')->with('cardImages')->get();
+        $cards = Card::with('category_detail')->with('cardImages')->take(200)->get();
         $testimonials = Testimonial::where('status', 1)->orderBy('sort_order', 'ASC')->get();
         $blogs = Blog::where('status', 1)->orderBy('sort_order', 'ASC')->get();
         return view('front.index')->with('sliders', $sliders)->with('categories', $categories)->with('cards', $cards)->with('testimonials', $testimonials)->with('blogs', $blogs);
@@ -49,9 +49,11 @@ class HomeController extends Controller
                 $response .= '<div class="col-lg-7">';                
                     $response .= '<div class="product-details-des">';    
                         $response .= '<div class="manufacturer-name mb-2">';    
-                            $response .= '<a href="javascript:void(0)"><h3 class="product-name">'.$cards[0]->card_code.'</h3> <span>'.$cards[0]->category_detail->name.'</span></a>';        
+                            $response .= '<a href="javascript:void(0)"><h3 class="product-name">'.$cards[0]->card_code.'</h3></a>';  
+                            foreach ($cards[0]->category_detail as $key => $value) {
+                                $response .= '<span>'.$value->get_cat['name'].' ,&nbsp;&nbsp;</span>';
+                            }
                         $response .= '</div>'; 
-
                         $response .= '<div class="ratings d-flex">';
                             $response .= '<span><i class="fa fa-star-o"></i></span>';
                             $response .= '<span><i class="fa fa-star-o"></i></span>';

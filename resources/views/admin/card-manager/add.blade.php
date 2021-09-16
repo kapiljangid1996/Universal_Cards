@@ -51,19 +51,19 @@
                                 <label class="form-label">Card Color <span class="text-danger">*</span></label>
                                 <select class="form-control" name="card_color" required="">
                                     <option selected disabled>Choose Color Please</option>
-                                    <option value="metallics_gold_silver_bronze">Metallics – Golden/Silver/Bronze</option>
-                                    <option value="pastle_shades">Pastle Shades</option>
-                                    <option value="cream">Cream</option>
-                                    <option value="red_maroon">Red / Maroon</option>
-                                    <option value="off_white_coral_pearl">Off White / Coral Pearl</option>
-                                    <option value="purple_violet">Purple / Violet</option>
-                                    <option value="yellow">Yellow</option>
-                                    <option value="orange">Orange</option>
-                                    <option value="hot_pearl_rose_pink">Hot Pink / Pearl Pink / Rose Pink</option>
-                                    <option value="blue_teal_turquoise_peacock_blue">Blue / Teal / Turquoise / Peacock Blue</option>
-                                    <option value="black_grey">Black / Grey</option>
-                                    <option value="brown">Brown</option>
-                                    <option value="green_olive_aqua">Green / Olive / Aqua</option>
+                                    <option value="1">Red/Maroon</option>
+                                    <option value="2">Cream</option>
+                                    <option value="3">Black/Grey</option>
+                                    <option value="4">Purple/Violet</option>
+                                    <option value="5">Orange</option>
+                                    <option value="6">Blue/Teal/Turquoise/Peacock Blue</option>
+                                    <option value="7">Brown</option>
+                                    <option value="8">Off White/Coral Pearl</option>
+                                    <option value="9">Hot Pink/Pearl Pink/Rose Pink</option>
+                                    <option value="10">Green/Olive/Aqua</option>
+                                    <option value="11">Yellow</option>
+                                    <option value="12">Metallics – Golden/Silver/Bronze</option>
+                                    <option value="13">Pastle Shades</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">

@@ -9,6 +9,11 @@
     .banner-statistics img {
         height: 205px;
     }
+
+    .banner-statistics2 img {
+        height: 85px;
+        width: 261px;
+    }
 </style>
 @stop
 
@@ -115,7 +120,7 @@
         <div class="row row-20 mtn-20">
             @foreach($categories as $category)
             <div class="col-sm-4">
-                <figure class="banner-statistics mt-20">
+                <figure class="banner-statistics2 mt-20">
                     <a href="#">
                         @if(!empty($category->image))
                             <img src="{{asset('Uploads/Category').'/'.$category->image}}" alt="{{ $category->name }}">
@@ -125,7 +130,7 @@
                     </a>
                 </figure>
                 <div>
-                    <h5 class="banner-text2 text-center">{{ $category->name }}</h5>
+                    <h5 class="banner-text2 text-center" style="visibility:hidden;">{{ $category->name }}</h5>
                 </div>
             </div>
             @endforeach
@@ -155,7 +160,7 @@
                         <ul class="nav justify-content-center">
                             <?php $i=1; ?>
                             @foreach($categories as $key => $category_tab)
-                                <li><a href="#tab-<?php echo $category_tab->slug ?>" class="{{$key == 0 ? 'show active' : '' }}" data-toggle="tab">{{ $category_tab->name}}</a></li>
+                                <li><a href="#tab-<?php echo $category_tab->id ?>" class="{{$key == 0 ? 'show active' : '' }}" data-toggle="tab">{{ $category_tab->name}}</a></li>
                             <?php $i++; ?>
                             @endforeach
                         </ul>
@@ -166,68 +171,78 @@
                     <div class="tab-content">
                         <?php $i=1; ?>
                         @foreach($categories as $key => $category_tab)
-                            <div class="tab-pane fade show {{$key == 0 ? 'active' : '' }}" id="tab-<?php echo $category_tab->slug ?>">
+                            <div class="tab-pane fade show {{$key == 0 ? 'active' : '' }}" id="tab-<?php echo $category_tab->id ?>">
                                 <div class="product-carousel-4 slick-row-10 slick-arrow-style">
                                     <!-- product item start -->
                                     @foreach($cards as $key => $card)
-                                        @if(!empty($card->category_detail->slug) && $category_tab->slug == $card->category_detail->slug)
-                                            <div class="product-item">
-                                                <figure class="product-thumb">
-                                                    @foreach($card->cardImages as $key => $cardImg)
-                                                        <a href="javascript:void(0)">
-                                                            @if(!empty($cardImg->image_type) && $cardImg->image_type == 'main_view')
-                                                                <img class="pri-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
-                                                            @endif
-                                                            @if(!empty($cardImg->image_type) && $cardImg->image_type == 'front_view')
-                                                                <img class="sec-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
-                                                            @endif
-                                                        </a>
-                                                    @endforeach
-                                                    <div class="product-badge">
-                                                        <div class="product-label new">
-                                                            <span>new</span>
+                                        @foreach($card->category_detail as  $card_cats)
+                                            @if(!empty($card_cats['category_id']) && $category_tab->id == $card_cats['category_id'])
+                                                <div class="product-item">
+                                                    <figure class="product-thumb">
+                                                        @foreach($card->cardImages as $key => $cardImg)
+                                                            <a href="javascript:void(0)">
+                                                                @if(!empty($cardImg->image_type) && $cardImg->image_type == 'main_view')
+                                                                    @if(!empty($cardImg->image))
+                                                                        <img class="pri-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
+                                                                    @else
+                                                                        <img src="{{asset('backend/images/no-image.gif')}}">
+                                                                    @endif
+                                                                @endif
+                                                                @if(!empty($cardImg->image_type) && $cardImg->image_type == 'front_view')
+                                                                    @if(!empty($cardImg->image))
+                                                                        <img class="sec-img" src="{{asset('Uploads/Card/Gallary').'/'.$cardImg->image}}" alt="{{ $cardImg->image_caption }}">
+                                                                    @else
+                                                                        <img src="{{asset('backend/images/no-image.gif')}}">
+                                                                    @endif
+                                                                @endif
+                                                            </a>
+                                                        @endforeach
+                                                        <div class="product-badge">
+                                                            <div class="product-label new">
+                                                                <span>new</span>
+                                                            </div>
+                                                            <div class="product-label discount">
+                                                                <span>10%</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="product-label discount">
-                                                            <span>10%</span>
+                                                        <div class="button-group">
+                                                            <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
+                                                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
+                                                            <a class="quick_view" data-id="{{ $card->id }}" href="#" data-toggle="modal"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
                                                         </div>
-                                                    </div>
-                                                    <div class="button-group">
-                                                        <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="pe-7s-like"></i></a>
-                                                        <a href="compare.html" data-toggle="tooltip" data-placement="left" title="Add to Compare"><i class="pe-7s-refresh-2"></i></a>
-                                                        <a class="quick_view" data-id="{{ $card->id }}" href="#" data-toggle="modal"><span data-toggle="tooltip" data-placement="left" title="Quick View"><i class="pe-7s-search"></i></span></a>
-                                                    </div>
-                                                    <div class="cart-hover">
-                                                        <button class="btn btn-cart">add to cart</button>
-                                                    </div>
-                                                </figure>
-                                                <div class="product-caption text-center">
-                                                    <div class="product-identity">
-                                                        <p class="manufacturer-name"><a href="product-details.html">Gold</a></p>
-                                                    </div>
-                                                    <ul class="color-categories">
-                                                        <li>
-                                                            <a class="c-lightblue" href="#" title="LightSteelblue"></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="c-darktan" href="#" title="Darktan"></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="c-grey" href="#" title="Grey"></a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="c-brown" href="#" title="Brown"></a>
-                                                        </li>
-                                                    </ul>
-                                                    <h6 class="product-name">
-                                                        <a href="javascript:void(0)">{{ $card->card_code }}</a>
-                                                    </h6>
-                                                    <div class="price-box">
-                                                        <span class="price-regular">{{ $card->price }}</span>
-                                                        <span class="price-old"><del>{{ $card->sample_price }}</del></span>
+                                                        <div class="cart-hover">
+                                                            <button class="btn btn-cart">add to cart</button>
+                                                        </div>
+                                                    </figure>
+                                                    <div class="product-caption text-center">
+                                                        <div class="product-identity">
+                                                            <p class="manufacturer-name"><a href="product-details.html">Gold</a></p>
+                                                        </div>
+                                                        <ul class="color-categories">
+                                                            <li>
+                                                                <a class="c-lightblue" href="#" title="LightSteelblue"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-darktan" href="#" title="Darktan"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-grey" href="#" title="Grey"></a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="c-brown" href="#" title="Brown"></a>
+                                                            </li>
+                                                        </ul>
+                                                        <h6 class="product-name">
+                                                            <a href="javascript:void(0)">{{ $card->card_code }}</a>
+                                                        </h6>
+                                                        <div class="price-box">
+                                                            <span class="price-regular">{{ $card->price }}</span>
+                                                            <span class="price-old"><del>{{ $card->sample_price }}</del></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endif
+                                            @endif
+                                        @endforeach
                                     @endforeach
                                     <!-- product item end -->
                                 </div>

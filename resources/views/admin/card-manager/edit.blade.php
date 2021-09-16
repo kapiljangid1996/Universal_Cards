@@ -53,31 +53,19 @@
                                 <select class="form-control" name="card_color" required="">
                                     <option selected disabled>Choose Color Please</option>
 
-                                    <option value="metallics_gold_silver_bronze" {{ $cards->card_color === 'metallics_gold_silver_bronze' ? 'selected' : '' }}>Metallics – Golden/Silver/Bronze</option>
-
-                                    <option value="pastle_shades" {{ $cards->card_color === 'pastle_shades' ? 'selected' : '' }}>Pastle Shades</option>
-
-                                    <option value="cream" {{ $cards->card_color === 'cream' ? 'selected' : '' }}>Cream</option>
-
-                                    <option value="red_maroon" {{ $cards->card_color === 'red_maroon' ? 'selected' : '' }}>Red / Maroon</option>
-
-                                    <option value="off_white_coral_pearl" {{ $cards->card_color === 'off_white_coral_pearl' ? 'selected' : '' }}>Off White / Coral Pearl</option>
-
-                                    <option value="purple_violet" {{ $cards->card_color === 'purple_violet' ? 'selected' : '' }}>Purple / Violet</option>
-
-                                    <option value="yellow" {{ $cards->card_color === 'yellow' ? 'selected' : '' }}>Yellow</option>
-
-                                    <option value="orange" {{ $cards->card_color === 'orange' ? 'selected' : '' }}>Orange</option>
-
-                                    <option value="hot_pearl_rose_pink" {{ $cards->card_color === 'hot_pearl_rose_pink' ? 'selected' : '' }}>Hot Pink / Pearl Pink / Rose Pink</option>
-
-                                    <option value="blue_teal_turquoise_peacock_blue" {{ $cards->card_color === 'blue_teal_turquoise_peacock_blue' ? 'selected' : '' }}>Blue / Teal / Turquoise / Peacock Blue</option>
-
-                                    <option value="black_grey" {{ $cards->card_color === 'black_grey' ? 'selected' : '' }}>Black / Grey</option>
-
-                                    <option value="brown" {{ $cards->card_color === 'brown' ? 'selected' : '' }}>Brown</option>
-
-                                    <option value="green_olive_aqua" {{ $cards->card_color === 'green_olive_aqua' ? 'selected' : '' }}>Green / Olive / Aqua</option>
+                                    <option value="1" {{ $cards->card_color === '1' ? 'selected' : '' }}>Red/Maroon</option>
+                                    <option value="2" {{ $cards->card_color === '2' ? 'selected' : '' }}>Cream</option>
+                                    <option value="3" {{ $cards->card_color === '3' ? 'selected' : '' }}>Black/Grey</option>
+                                    <option value="4" {{ $cards->card_color === '4' ? 'selected' : '' }}>Purple/Violet</option>
+                                    <option value="5" {{ $cards->card_color === '5' ? 'selected' : '' }}>Orange</option>
+                                    <option value="6" {{ $cards->card_color === '6' ? 'selected' : '' }}>Blue/Teal/Turquoise/Peacock Blue</option>
+                                    <option value="7" {{ $cards->card_color === '7' ? 'selected' : '' }}>Brown</option>
+                                    <option value="8" {{ $cards->card_color === '8' ? 'selected' : '' }}>Off White/Coral Pearl</option>
+                                    <option value="9" {{ $cards->card_color === '9' ? 'selected' : '' }}>Hot Pink/Pearl Pink/Rose Pink</option>
+                                    <option value="10" {{ $cards->card_color === '10' ? 'selected' : '' }}>Green/Olive/Aqua</option>
+                                    <option value="11" {{ $cards->card_color === '11' ? 'selected' : '' }}>Yellow</option>
+                                    <option value="12" {{ $cards->card_color === '12' ? 'selected' : '' }}>Metallics – Golden/Silver/Bronze</option>
+                                    <option value="13" {{ $cards->card_color === '13' ? 'selected' : '' }}>Pastle Shades</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">

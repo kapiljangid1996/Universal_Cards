@@ -20,6 +20,15 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+/*Route::get('/foo/bar', function()
+{
+    $value = DB::table('cards')->select('id', 'card_view', 'card_image_title')->get();
+
+    foreach ($value as $key => $val) {
+        DB::table('card_images')->insert([ 'image_type' => 'main_view', 'image_caption' => $val->card_image_title, 'image' => $val->card_view, 'card_id' => $val->id ]);
+    }    
+});*/
+
 Route::post('/get-card-popup', [HomeController::class, 'getCardPopup'])->name('get.card.popup');
 
 Route::post('/newsletter-submit', [App\Http\Controllers\Admin\NewslettersController::class, 'submitNewsletter'])->name('newsletter.submit');

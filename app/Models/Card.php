@@ -15,17 +15,12 @@ class Card extends Model
 
     public function category_detail()
     {
-        return $this->belongsTo('App\Models\Category','category_id');
+        return $this->hasMany('App\Models\CardCategory')->with('get_cat');
     }
 
     public function cardImages()
     {
         return $this->hasMany('App\Models\CardImage');
-    }
-
-    public function cardCategories()
-    {
-        return $this->hasMany('App\Models\CardCategory');
     }
 
     public static function storeCard($request){
